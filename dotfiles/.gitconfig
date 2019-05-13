@@ -1,0 +1,6 @@
+[core]
+	excludesfile = ~/.gitignore
+[pull]
+	rebase = true
+[merge]
+	tool = vimdiff
