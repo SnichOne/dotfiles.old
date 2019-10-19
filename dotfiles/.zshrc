@@ -57,6 +57,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# n (Node version manager) install path
+export N_PREFIX=$HOME/.local
 # export XDG_CONFIG_HOME=$HOME/.config
 # export MANPATH="/usr/local/man:$MANPATH"
 

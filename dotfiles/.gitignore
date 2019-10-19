@@ -1,5 +1,6 @@
-# py venv
+# py
 env
+.mypy_cache/
 
 # neovim
 *~

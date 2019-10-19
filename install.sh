@@ -68,7 +68,7 @@ setup_dotfiles() (
             mv $file $file.bak
         }
 
-        [ -e $DOTFILES_BACKUP_DIR ] && backupdir $DOTFILES_BACKUP_DIR
+        [ -e $DOTFILES_BACKUP_DIR ] && backup_file $DOTFILES_BACKUP_DIR
         mkdir $DOTFILES_BACKUP_DIR
         for filename in ${dotfiles[*]}; do
             local dir=$(dirname $filename)
