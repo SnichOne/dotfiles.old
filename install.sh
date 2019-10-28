@@ -22,14 +22,18 @@ install_packages() {
     pip install --user neovim
     pip3 install --user neovim
 
-    # Prevent the cloned repository from having insecure permissions. Failing to do
-    # so causes compinit() calls to fail with "command not found: compdef" errors
-    # for users with insecure umasks (e.g., "002", allowing group writability).
-    umask g-w,o-w
-    git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh || {
-        printf "${BOLD}Error: git clone of oh-my-zsh repo failed${NORMAL}\n"
-        exit 1
-    }
+    if [ -e ~/.oh-my-zsh ]; then
+        printf "${BOLD}WarningError: git clone of oh-my-zsh repo failed${NORMAL}\n"
+    else
+        # Prevent the cloned repository from having insecure permissions. Failing to do
+        # so causes compinit() calls to fail with "command not found: compdef" errors
+        # for users with insecure umasks (e.g., "002", allowing group writability).
+        umask g-w,o-w
+        git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh || {
+            printf "${BOLD}Error: git clone of oh-my-zsh repo failed${NORMAL}\n"
+            exit 1
+        }
+    fi
 
     # If this user's login shell is not already "zsh", attempt to switch.
     TEST_CURRENT_SHELL=$(basename "$SHELL")
@@ -109,7 +113,7 @@ config_git() (
     read -p "Email: " email
     read -p "Name: " name
 
-    git config --global user.name $name
+    git config --global user.name "$name"
     git config --global user.email $email
 )
 

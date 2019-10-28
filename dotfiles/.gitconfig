@@ -4,3 +4,5 @@
 	rebase = true
 [merge]
 	tool = vimdiff
+[mergetool "vimdiff"]
+	path = nvim
